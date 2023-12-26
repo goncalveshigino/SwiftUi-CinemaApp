@@ -6,6 +6,42 @@
 //
 
 import SwiftUI
+import Combine
+
+final class searchViewModel: ObservableObject {
+    
+    @Published private(set) var filteredMovies: [Movie] = []
+    @Published var searchText = ""
+    
+    private var cancellables = Set<AnyCancellable>()
+    
+    var isSearching: Bool {
+        !searchText.isEmpty
+    }
+    
+    init() {
+        addSubscribers()
+    }
+    
+    private func addSubscribers() {
+        $searchText
+            .debounce(for: 0.3, scheduler: DispatchQueue.main)
+            .sink { [weak self] searchText in
+                self?.filterMovies(searchText: searchText)
+            }
+            .store(in: &cancellables)
+    }
+    
+    private func filterMovies(searchText: String) {
+        guard searchText.isNotEmpty else {
+            filteredMovies = []
+            return
+        }
+        
+        //let search = searchText.lowercased()
+        
+    }
+}
 
 struct SearchBarView: View {
     
@@ -40,13 +76,18 @@ struct SearchBarView: View {
         .padding()
         .background(
            RoundedRectangle(cornerRadius: 20)
-            .fill(Color.theme.secondaryText)
+            .fill(Color.theme.searchColor)
             .shadow(
                 color: Color.theme.accent.opacity(0.15),
                 radius: 10, x: 0, y: 0)
         )
-        .padding()
-        
+        .padding(.horizontal, 5)
+    }
+}
+
+extension Collection {
+    var isNotEmpty: Bool {
+        isEmpty == false
     }
 }
 

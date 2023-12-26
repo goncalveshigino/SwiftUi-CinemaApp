@@ -12,6 +12,7 @@ struct HomeView: View {
     @State private var searchText: String = ""
     @StateObject private var viewModel = HomeViewModel()
     @Namespace var namespace
+    @State var changeTheme: Bool = false
     
     var body: some View {
         ScrollView(showsIndicators: false) {
@@ -24,9 +25,14 @@ struct HomeView: View {
                     
                     Spacer()
                     
-                    Image(systemName: "moon.fill") //moon.fill
+                    Image(systemName: changeTheme ? "sun.max.fill" : "moon.fill")
                         .foregroundStyle(Color.theme.accent)
                         .font(.system(size: 20, weight: .bold))
+                        .onTapGesture {
+                            withAnimation(.easeIn) {
+                                changeTheme.toggle()
+                            }
+                        }
                 }
                 
                 SearchBarView(searchText: $searchText)
@@ -83,5 +89,7 @@ struct HomeView: View {
 }
 
 #Preview {
-    HomeView()
+    NavigationStack {
+        HomeView()
+    }
 }

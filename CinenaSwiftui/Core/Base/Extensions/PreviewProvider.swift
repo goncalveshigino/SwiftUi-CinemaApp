@@ -20,7 +20,7 @@ class DeveloperPreview {
     
     let movie = Movie(
         adult: false,
-        backdropPath: "",
+        backdropPath: "/tmU7GeKVybMWFButWEGl2M4GeiP.jpg",
         genreIDS: [1],
         id: 769,
         originalLanguage: "",
@@ -36,4 +36,14 @@ class DeveloperPreview {
     )
     
     let genre = Genre(id: 28, name: "Action")
+    
+    let mockReview = Review(
+        author: "John Doe", 
+        authorDetails: nil,
+        content: "This is a great movie!",
+        createdAt: "2023-01-01T12:00:00Z",
+        id: "12345",
+        updatedAt: "2023-01-02T10:30:00Z",
+        url: "https://example.com/review/12345"
+    )
 }

@@ -26,7 +26,9 @@ struct Movie: Codable, Identifiable {
     let backdropPath: String?
     let genreIDS: [Int]
     let id: Int
-    let originalLanguage, originalTitle, overview: String?
+    let originalLanguage: String
+    let originalTitle: String
+    let overview: String
     let popularity: Double?
     let posterPath: String?
     let releaseDate: String?
