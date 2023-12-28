@@ -13,9 +13,12 @@ struct CustomImageView: View {
     let itemHeight: CGFloat
     let movie: Movie
     var imageType: MovieImageType = .poster
+    var imageString: String = ""
+    
+    @StateObject var vm = HomeViewModel()
     
     var body: some View {
-        AsyncImage(url: URL(string: movie.getImage(for: imageType))) { image in
+        AsyncImage(url: URL(string: vm.isSearching ? imageString : movie.getImage(for: imageType))) { image in
             image
                 .resizable()
                 .scaledToFill()
@@ -33,5 +36,5 @@ struct CustomImageView: View {
 }
 
 #Preview {
-    CustomImageView(itemWidth: 150, itemHeight: 150, movie: DeveloperPreview.instance.movie)
+    CustomImageView(itemWidth: 150, itemHeight: 170, movie: DeveloperPreview.instance.movie)
 }

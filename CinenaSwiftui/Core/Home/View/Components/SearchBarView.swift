@@ -8,8 +8,10 @@
 import SwiftUI
 import Combine
 
+@MainActor
 final class searchViewModel: ObservableObject {
     
+    @Published private(set) var allMovies: [Movie] = []
     @Published private(set) var filteredMovies: [Movie] = []
     @Published var searchText = ""
     
@@ -38,7 +40,13 @@ final class searchViewModel: ObservableObject {
             return
         }
         
-        //let search = searchText.lowercased()
+        var movies = allMovies
+        let search = searchText.lowercased()
+        filteredMovies = movies.filter({ movie in
+            let titleContainsSearch = movie.title.lowercased().contains(search)
+            
+            return titleContainsSearch
+        })
         
     }
 }
@@ -78,7 +86,7 @@ struct SearchBarView: View {
            RoundedRectangle(cornerRadius: 20)
             .fill(Color.theme.searchColor)
             .shadow(
-                color: Color.theme.accent.opacity(0.15),
+                color: Color.theme.accent.opacity(0.5),
                 radius: 10, x: 0, y: 0)
         )
         .padding(.horizontal, 5)

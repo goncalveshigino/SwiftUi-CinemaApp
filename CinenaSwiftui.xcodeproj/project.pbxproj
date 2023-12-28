@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D658621A2B3CB6C200CA6669 /* searchCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65862192B3CB6C200CA6669 /* searchCard.swift */; };
 		D65FD7042AE825B00089522C /* CinenaSwiftuiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65FD7032AE825B00089522C /* CinenaSwiftuiApp.swift */; };
 		D65FD7062AE825B00089522C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65FD7052AE825B00089522C /* ContentView.swift */; };
 		D65FD7082AE825B20089522C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D65FD7072AE825B20089522C /* Assets.xcassets */; };
@@ -40,6 +41,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D65862192B3CB6C200CA6669 /* searchCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = searchCard.swift; sourceTree = "<group>"; };
 		D65FD7002AE825B00089522C /* CinenaSwiftui.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CinenaSwiftui.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D65FD7032AE825B00089522C /* CinenaSwiftuiApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CinenaSwiftuiApp.swift; sourceTree = "<group>"; };
 		D65FD7052AE825B00089522C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -217,6 +219,7 @@
 				D67A28662B38FAD800635A44 /* CustomImageView.swift */,
 				D67A28622B38F36100635A44 /* MovieCard.swift */,
 				D6975C9C2B3ACBB600EC1348 /* DetailSectionCard.swift */,
+				D65862192B3CB6C200CA6669 /* searchCard.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -224,8 +227,8 @@
 		D6975C932B3AB5A300EC1348 /* Detail */ = {
 			isa = PBXGroup;
 			children = (
-				D6975C9A2B3AB81200EC1348 /* View */,
 				D6975C992B3AB80600EC1348 /* ViewModel */,
+				D6975C9A2B3AB81200EC1348 /* View */,
 				D6975C982B3AB7FF00EC1348 /* Model */,
 			);
 			path = Detail;
@@ -348,6 +351,7 @@
 				D65FD7062AE825B00089522C /* ContentView.swift in Sources */,
 				D67A284D2B38B4F800635A44 /* Optional.swift in Sources */,
 				D67A28612B38ED4600635A44 /* MovieModel.swift in Sources */,
+				D658621A2B3CB6C200CA6669 /* searchCard.swift in Sources */,
 				D65FD7042AE825B00089522C /* CinenaSwiftuiApp.swift in Sources */,
 				D6975C9D2B3ACBB600EC1348 /* DetailSectionCard.swift in Sources */,
 				D6975C902B3AA7A400EC1348 /* GenreCard.swift in Sources */,

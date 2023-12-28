@@ -32,72 +32,77 @@ struct DetailView: View {
     }
     
     var body: some View {
-        ScrollView {
-            VStack(alignment: .leading) {
+            VStack {
+                
                 header
                     .ignoresSafeArea()
             
-                VStack {
-                    HStack {
-                        Image(systemName: "calendar")
-                        Text("2000")
-                        Text(" | ")
-                        Image(systemName: "calendar")
-                        Text("18282 Minutos")
-                        Text(" | ")
-                        Image(systemName: "calendar")
-                        Text("Action")
-                    }
-                    .foregroundStyle(Color.theme.secondaryText)
-                    .frame(maxWidth: .infinity)
-                    
-                    HStack {
-                        ForEach(viewModel.sections, id: \.self) { section in
-                            DetailSectionCard(section: section, namespace: namespace, selectedSection: $viewModel.selectedSection)
-                                .onTapGesture {
-                                    withAnimation(.easeInOut) {
-                                        viewModel.selectedSection = section
+                ScrollView {
+                  
+                    VStack {
+                        HStack {
+                            Image(systemName: "calendar")
+                            Text("2000")
+                            Text(" | ")
+                            Image(systemName: "calendar")
+                            Text("18282 Minutos")
+                            Text(" | ")
+                            Image(systemName: "calendar")
+                            Text("Action")
+                        }
+                        .foregroundStyle(Color.theme.secondaryText)
+                        .frame(maxWidth: .infinity)
+                        
+                        HStack {
+                            ForEach(viewModel.sections, id: \.self) { section in
+                                DetailSectionCard(section: section, namespace: namespace, selectedSection: $viewModel.selectedSection)
+                                    .onTapGesture {
+                                        withAnimation(.easeInOut) {
+                                            viewModel.selectedSection = section
+                                        }
+                                    }
+                            }
+                        }
+                        
+                        switch viewModel.selectedSection {
+                        case .about:
+                            VStack(alignment: .leading) {
+                                Text(viewModel.movie.overview)
+                                    .foregroundStyle(Color.theme.textColor)
+                                    .lineLimit(showFullDescription ? nil : 2)
+                              
+                                if viewModel.movie.overview.isNotEmpty {
+                                    readMoreAndLess
+                                }
+                            }
+                            .padding()
+                            
+                        case .review:
+                            ScrollView(showsIndicators: false) {
+                                ForEach(viewModel.reviews) { review in
+                                    ReviewCard(review: review)
+                                        .foregroundStyle(Color.theme.textColor)
+                                
+                                }
+                            }
+                        }
+                        
+                        VStack(alignment: .leading) {
+                            Text("Recomendacoes")
+                                .font(.system(size: 16, weight: .bold))
+                            
+                            ScrollView(.horizontal, showsIndicators: false) {
+                                HStack {
+                                    ForEach(viewModel.similarMovies) { movie in
+                                        SimilarCard(movie: movie)
                                     }
                                 }
-                        }
-                    }
-                    
-                    switch viewModel.selectedSection {
-                    case .about:
-                        Text(viewModel.movie.overview)
-                            .padding()
-                            .lineLimit(showFullDescription ? nil : 2)
-                      
-                        if viewModel.movie.overview.isNotEmpty {
-                            readMoreAndLess
-                        }
-                        
-                    case .review:
-                        ScrollView(showsIndicators: false) {
-                            ForEach(viewModel.reviews) { review in
-                                ReviewCard(review: review)
-                                    .lineLimit(showFullDescription ? nil : 2)
-                                
-                                readMoreAndLess
-                                   
+                              
                             }
                         }
-                    }
-                    
-                    VStack(alignment: .leading) {
-                        Text("Recomendacoes")
-                            .font(.system(size: 16, weight: .bold))
-                        
-                        ScrollView(.horizontal, showsIndicators: false) {
-                            HStack {
-                                ForEach(viewModel.similarMovies) { movie in
-                                    SimilarCard(movie: movie)
-                                }
-                            }
-                          
-                        }
-                    }
-                    .padding()
+                        .padding()
+                        .padding(.bottom)
+                }
                     
                     Spacer()
                 }
@@ -109,8 +114,8 @@ struct DetailView: View {
                 }
             }
         }
-    }
 }
+
     
 
 #Preview {
@@ -120,7 +125,6 @@ struct DetailView: View {
 }
 
 private extension DetailView {
-    
     var readMoreAndLess: some View {
         Button {
             withAnimation(.easeInOut) {
@@ -160,25 +164,28 @@ private extension DetailView {
             HStack {
                 CustomImageView(itemWidth: backdropImageSize, itemHeight: backdropImageSize, movie: viewModel.movie, imageType: .backdrop)
                     .shadow(
-                        color: Color.theme.accent.opacity(0.15),
+                        color: Color.theme.accent.opacity(0.5),
                         radius: 10, x: 0, y: 1
                     )
+                    .offset(y: 190)
                 
                 Text(viewModel.movie.title)
                     .minimumScaleFactor(0.5)
-                    .padding(.top, titleOffset)
+                    .offset(y: titleOffset)
+                    
             }
             .padding()
-            .offset(y: backdropImageOffset)
+            .foregroundStyle(Color.theme.accent)
+           
         }
     }
     
     var posterImageHeight: CGFloat {
-        screenHeight * 0.5
+        screenHeight * 0.4
     }
     
     var backdropImageSize: CGFloat {
-        screenHeight * 0.20
+        screenHeight * 0.2
     }
     
     var backdropImageOffset: CGFloat {
@@ -186,7 +193,7 @@ private extension DetailView {
     }
     
     var titleOffset: CGFloat {
-        screenHeight * 0.05
+        screenHeight * 0.26
     }
     
     var contentOffset: CGFloat {
