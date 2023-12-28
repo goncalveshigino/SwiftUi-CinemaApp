@@ -9,7 +9,7 @@ import SwiftUI
 
 struct HomeView: View {
     
-    @State private var searchText: String = ""
+   
     @StateObject private var viewModel = HomeViewModel()
     @Namespace var namespace
     @State var changeTheme: Bool = false
@@ -35,11 +35,11 @@ struct HomeView: View {
                         }
                 }
                 
-                SearchBarView(searchText: $searchText)
+                SearchBarView(searchText: $viewModel.searchText)
                 
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack {
-                        ForEach(viewModel.trendingMovies) { movie in
+                        ForEach(viewModel.isSearching ? [] : viewModel.trendingMovies) { movie in
                             MovieCard(movie: movie)
                                 .onTapGesture {
                                     viewModel.selectedMovie = movie
@@ -50,7 +50,7 @@ struct HomeView: View {
                 
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack {
-                        ForEach(viewModel.genre) { genre in
+                        ForEach(viewModel.isSearching ? [] : viewModel.genre) { genre in
                             GenreCard(genre: genre, namespace: namespace, selectedGenre: $viewModel.selectedGenre)
                                 .onTapGesture {
                                     withAnimation(.easeInOut) {
@@ -66,18 +66,31 @@ struct HomeView: View {
                 
                 
                 LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())], spacing: 20) {
-                    ForEach(viewModel.moviesForSelectedGenre) { movie in
+                    ForEach( viewModel.isSearching ? [] : viewModel.moviesForSelectedGenre) { movie in
                         MovieCard(movie: movie, type: .grid)
+                            .onTapGesture {
+                                viewModel.selectedMovie = movie
+                            }
                     }
                 }
+                
+                
+                VStack(spacing: 20) {
+                    ForEach( viewModel.isSearching ? viewModel.filteredMovies : [] ) { movie in
+                        SearchCard(movie: movie, type: .search)
+                            .onTapGesture {
+                                viewModel.selectedMovie = movie
+                            }
+                    }
+                }
+                .padding(.leading)
+                
             }
         }
-        //.preferredColorScheme(.dark)
         .padding()
         .background(Color.theme.background)
         .fullScreenCover(item: $viewModel.selectedMovie) { movie in
             DetailView(movie: movie)
-               
         }
         .task {
             await viewModel.fetchTrendingMovies()
@@ -87,6 +100,15 @@ struct HomeView: View {
         }
     }
 }
+
+struct searchChildView: View {
+    @Environment(\.isSearching) private var isSearching
+    
+    var body: some View {
+        Text("Chil view is searching: \(isSearching.description)")
+    }
+}
+
 
 #Preview {
     NavigationStack {

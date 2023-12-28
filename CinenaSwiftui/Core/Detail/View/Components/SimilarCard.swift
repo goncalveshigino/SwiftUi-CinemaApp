@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+
 struct SimilarCard: View {
     
     let movie: Movie

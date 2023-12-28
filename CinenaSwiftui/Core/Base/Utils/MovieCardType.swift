@@ -8,7 +8,7 @@
 import Foundation
 
 enum MovieCardType {
-    case poster, grid
+    case poster, grid, search
 }
 
 
@@ -19,6 +19,8 @@ extension MovieCardType {
             return 0.50
         case .grid:
            return 0.30
+        case .search:
+            return 0.3
         }
     }
     
@@ -28,6 +30,8 @@ extension MovieCardType {
             return 0.32
         case .grid:
            return 0.20
+        case .search:
+            return 0.2
         }
     }
 
