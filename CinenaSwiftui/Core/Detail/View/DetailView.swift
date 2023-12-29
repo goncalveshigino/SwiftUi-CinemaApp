@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+
 enum DetailViewSection: String {
     case about, review
     
@@ -151,13 +152,13 @@ private extension DetailView {
                 Image(systemName: "chevron.left")
                     .resizable()
                     .scaledToFit()
-                    .foregroundStyle(Color.white)
+                    .foregroundStyle(Color.theme.accent)
                     .frame(width: 10)
                     .onTapGesture {
                         dismiss()
                     }
                     .padding(.top, 60)
-                    .padding(.trailing, 320)
+                    .padding(.trailing, 340)
                 
             }
             

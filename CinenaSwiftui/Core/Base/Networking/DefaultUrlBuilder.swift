@@ -15,7 +15,7 @@ enum DefaultUrlBuilder {
     
     static func build(api: ApiConstructor) throws -> URL {
         guard var urlComponents = URLComponents(string: api.endpoint.fullPath) else { throw DefaultUrlBuilderError.invalidPath}
-        urlComponents.queryItems = buildQueryParams(api.params, ["api_key": Constants.apiKey, "language": Constants.language])
+        urlComponents.queryItems = buildQueryParams(api.params, ["api_key": Constants.apiKey, "language": Constants.language, "page": String(Constants.page)])
         
         guard let url = urlComponents.url else {
             throw DefaultUrlBuilderError.invalidUrl

@@ -22,16 +22,19 @@ struct CustomImageView: View {
             image
                 .resizable()
                 .scaledToFill()
+              
         } placeholder: {
             ZStack {
-                Color.theme.secondaryText
-                    
-                Text(movie.title)
-                    .padding()
+                ProgressView()
+//                Color.theme.secondaryText
+//
+//                Text(movie.title)
+//                    .padding()
             }
         }
         .frame(width: itemWidth, height: itemHeight)
         .clipShape(RoundedRectangle(cornerRadius: 20))
+        .shadow( color: Color.theme.background.opacity(0.3), radius: 10, x: 0, y: 2)
     }
 }
 
