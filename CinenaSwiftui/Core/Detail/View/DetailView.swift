@@ -14,9 +14,9 @@ enum DetailViewSection: String {
     var rawValue: String {
         switch self {
         case .about:
-            return "About Movie"
+            return "Sobre o filme"
         case .review:
-            return "Reviews"
+            return "Avaliações"
         }
     }
 }
@@ -43,10 +43,10 @@ struct DetailView: View {
                     VStack {
                         HStack {
                             Image(systemName: "calendar")
-                            Text("2000")
+                            Text(viewModel.movie.releaseDate)
                             Text(" | ")
                             Image(systemName: "calendar")
-                            Text("18282 Minutos")
+                            Text("\(viewModel.movie.voteCount ?? 0)")
                             Text(" | ")
                             Image(systemName: "calendar")
                             Text("Action")
@@ -152,7 +152,7 @@ private extension DetailView {
                 Image(systemName: "chevron.left")
                     .resizable()
                     .scaledToFit()
-                    .foregroundStyle(Color.theme.accent)
+                    .foregroundStyle(Color.blue)
                     .frame(width: 10)
                     .onTapGesture {
                         dismiss()

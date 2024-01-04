@@ -125,6 +125,7 @@
 		D67A28422B385A8200635A44 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				D68F23ED2B471F92003B7B6B /* Service */,
 				D6975C912B3AB35C00EC1348 /* Base */,
 				D67A28512B38D4D300635A44 /* Home */,
 				D6975C932B3AB5A300EC1348 /* Detail */,
@@ -151,7 +152,6 @@
 				D67A286C2B39560400635A44 /* Endpoint.swift */,
 				D67A286E2B3957DD00635A44 /* ApiConstructor.swift */,
 				D67A28702B39586300635A44 /* DefaultUrlBuilder.swift */,
-				D67A28722B395E9500635A44 /* MovieService.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -199,6 +199,14 @@
 				D6975C8D2B3AA61E00EC1348 /* Genre.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		D68F23ED2B471F92003B7B6B /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				D67A28722B395E9500635A44 /* MovieService.swift */,
+			);
+			path = Service;
 			sourceTree = "<group>";
 		};
 		D6975C912B3AB35C00EC1348 /* Base */ = {

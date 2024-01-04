@@ -27,7 +27,7 @@ struct SearchCard: View {
                 
                 Divider()
                 
-                Text(movie.overview)
+                Text(movie.title)
                     .font(.caption)
                     .foregroundStyle(Color.theme.secondaryText)
             

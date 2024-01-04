@@ -15,14 +15,11 @@ struct HomeView: View {
     @StateObject private var viewModel = HomeViewModel()
     @Namespace var namespace
    
-    
-
-
     var body: some View {
         ScrollView(showsIndicators: false) {
             LazyVStack(alignment: .leading, spacing: 20) {
                 HStack {
-                    Text("O que voce quer assistir?")
+                    Text("O que deseja assistir?")
                         .foregroundStyle(Color.theme.accent)
                         .font(.system(size: 20, weight: .bold))
                         .padding(.leading)
@@ -30,7 +27,7 @@ struct HomeView: View {
                     Spacer()
                     
                     Image(systemName: isDarkMode ? "sun.max.fill" : "moon.fill")
-                        .foregroundStyle(Color.theme.accent)
+                        .foregroundStyle(Color.theme.iconColor)
                         .font(.system(size: 20, weight: .bold))
                         .onTapGesture {
                             withAnimation(.easeInOut(duration: 1)) {
@@ -41,7 +38,7 @@ struct HomeView: View {
                 
                 SearchBarView(searchText: $viewModel.searchText)
                 
-                Text("Filmes da semana")
+                Text(viewModel.isSearching ? "" : "Filmes da semana")
                     .font(.system(size: 18, weight: .medium ))
                     .foregroundStyle(Color.theme.accent)
                 
@@ -110,15 +107,6 @@ struct HomeView: View {
     }
 }
 
-
-
-//struct searchChildView: View {
-//    @Environment(\.isSearching) private var isSearching
-//    
-//    var body: some View {
-//        Text("Chil view is searching: \(isSearching.description)")
-//    }
-//}
 
 
 #Preview {

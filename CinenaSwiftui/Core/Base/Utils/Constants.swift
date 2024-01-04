@@ -17,12 +17,4 @@ enum Constants {
 }
 
 
-struct CinemaKeyStorage {
-    static var APP_THEME = "appTheme"
-}
 
-struct CinemaTheme {
-    static var DARK = "Escuro"
-    static var LIGHT = "Claro"
-    static var AUTO = "Auto"
-}
