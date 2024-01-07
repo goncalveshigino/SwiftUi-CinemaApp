@@ -21,7 +21,7 @@ struct SearchCard: View {
                 )
             
             VStack {
-                Text(movie.originalTitle)
+                Text(movie.title)
                     .bold()
                     .foregroundStyle(Color.theme.textColor)
                 

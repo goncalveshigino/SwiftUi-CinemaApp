@@ -8,11 +8,11 @@
 import Foundation
 
 
-struct Genre: Identifiable, Codable {
+struct Genre: Identifiable, Codable, Hashable {
     let id: Int
     let name: String
 }
 
-struct GenreResponse: Codable {
+struct GenreResponse: Codable, Hashable {
     let genres: [Genre]
 }

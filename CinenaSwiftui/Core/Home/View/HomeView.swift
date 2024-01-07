@@ -9,33 +9,38 @@ import SwiftUI
 
 struct HomeView: View {
     
-   
+    @AppStorage("isDarkMode") private var isDarkMode: Bool = false
+    
+    
     @StateObject private var viewModel = HomeViewModel()
     @Namespace var namespace
-    @State var changeTheme: Bool = false
-    
+   
     var body: some View {
         ScrollView(showsIndicators: false) {
             LazyVStack(alignment: .leading, spacing: 20) {
                 HStack {
-                    Text("O que voce quer assistir?")
+                    Text("O que deseja assistir?")
                         .foregroundStyle(Color.theme.accent)
                         .font(.system(size: 20, weight: .bold))
                         .padding(.leading)
                     
                     Spacer()
                     
-                    Image(systemName: changeTheme ? "sun.max.fill" : "moon.fill")
-                        .foregroundStyle(Color.theme.accent)
+                    Image(systemName: isDarkMode ? "sun.max.fill" : "moon.fill")
+                        .foregroundStyle(Color.theme.iconColor)
                         .font(.system(size: 20, weight: .bold))
                         .onTapGesture {
-                            withAnimation(.easeIn) {
-                                changeTheme.toggle()
+                            withAnimation(.easeInOut(duration: 1)) {
+                                self.isDarkMode.toggle()
                             }
                         }
                 }
                 
                 SearchBarView(searchText: $viewModel.searchText)
+                
+                Text(viewModel.isSearching ? "" : "Filmes da semana")
+                    .font(.system(size: 18, weight: .medium ))
+                    .foregroundStyle(Color.theme.accent)
                 
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack {
@@ -87,6 +92,7 @@ struct HomeView: View {
                 
             }
         }
+        .preferredColorScheme(isDarkMode ? .dark : .light)
         .padding()
         .background(Color.theme.background)
         .fullScreenCover(item: $viewModel.selectedMovie) { movie in
@@ -101,13 +107,6 @@ struct HomeView: View {
     }
 }
 
-struct searchChildView: View {
-    @Environment(\.isSearching) private var isSearching
-    
-    var body: some View {
-        Text("Chil view is searching: \(isSearching.description)")
-    }
-}
 
 
 #Preview {

@@ -31,7 +31,7 @@ struct Movie: Codable, Identifiable {
     let overview: String
     let popularity: Double?
     let posterPath: String?
-    let releaseDate: String?
+    let releaseDate: String
     let title: String
     let video: Bool?
     let voteAverage: Double?

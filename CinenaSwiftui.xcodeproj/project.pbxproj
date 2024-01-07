@@ -33,6 +33,9 @@
 		D683024A2B3B0EE6000D5407 /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68302492B3B0EE5000D5407 /* Review.swift */; };
 		D683024C2B3B1255000D5407 /* ReviewCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D683024B2B3B1255000D5407 /* ReviewCard.swift */; };
 		D683025A2B3B4396000D5407 /* SimilarCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68302592B3B4396000D5407 /* SimilarCard.swift */; };
+		D68915CE2B4B1FC500BABEE6 /* Actor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68915CD2B4B1FC500BABEE6 /* Actor.swift */; };
+		D68915D02B4B221800BABEE6 /* ActorCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68915CF2B4B221800BABEE6 /* ActorCard.swift */; };
+		D68915D22B4B309600BABEE6 /* CustomImageActor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68915D12B4B309600BABEE6 /* CustomImageActor.swift */; };
 		D6975C8E2B3AA61F00EC1348 /* Genre.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6975C8D2B3AA61E00EC1348 /* Genre.swift */; };
 		D6975C902B3AA7A400EC1348 /* GenreCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6975C8F2B3AA7A400EC1348 /* GenreCard.swift */; };
 		D6975C952B3AB6B700EC1348 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6975C942B3AB6B700EC1348 /* DetailView.swift */; };
@@ -68,6 +71,9 @@
 		D68302492B3B0EE5000D5407 /* Review.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
 		D683024B2B3B1255000D5407 /* ReviewCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCard.swift; sourceTree = "<group>"; };
 		D68302592B3B4396000D5407 /* SimilarCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimilarCard.swift; sourceTree = "<group>"; };
+		D68915CD2B4B1FC500BABEE6 /* Actor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Actor.swift; sourceTree = "<group>"; };
+		D68915CF2B4B221800BABEE6 /* ActorCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActorCard.swift; sourceTree = "<group>"; };
+		D68915D12B4B309600BABEE6 /* CustomImageActor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImageActor.swift; sourceTree = "<group>"; };
 		D6975C8D2B3AA61E00EC1348 /* Genre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Genre.swift; sourceTree = "<group>"; };
 		D6975C8F2B3AA7A400EC1348 /* GenreCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreCard.swift; sourceTree = "<group>"; };
 		D6975C942B3AB6B700EC1348 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
@@ -125,6 +131,7 @@
 		D67A28422B385A8200635A44 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				D68F23ED2B471F92003B7B6B /* Service */,
 				D6975C912B3AB35C00EC1348 /* Base */,
 				D67A28512B38D4D300635A44 /* Home */,
 				D6975C932B3AB5A300EC1348 /* Detail */,
@@ -151,7 +158,6 @@
 				D67A286C2B39560400635A44 /* Endpoint.swift */,
 				D67A286E2B3957DD00635A44 /* ApiConstructor.swift */,
 				D67A28702B39586300635A44 /* DefaultUrlBuilder.swift */,
-				D67A28722B395E9500635A44 /* MovieService.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -201,6 +207,14 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		D68F23ED2B471F92003B7B6B /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				D67A28722B395E9500635A44 /* MovieService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
 		D6975C912B3AB35C00EC1348 /* Base */ = {
 			isa = PBXGroup;
 			children = (
@@ -238,6 +252,7 @@
 			isa = PBXGroup;
 			children = (
 				D68302492B3B0EE5000D5407 /* Review.swift */,
+				D68915CD2B4B1FC500BABEE6 /* Actor.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -264,6 +279,8 @@
 			children = (
 				D683024B2B3B1255000D5407 /* ReviewCard.swift */,
 				D68302592B3B4396000D5407 /* SimilarCard.swift */,
+				D68915CF2B4B221800BABEE6 /* ActorCard.swift */,
+				D68915D12B4B309600BABEE6 /* CustomImageActor.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -346,7 +363,9 @@
 				D67A286B2B38FF3700635A44 /* View.swift in Sources */,
 				D67A28692B38FE3B00635A44 /* MovieCardType.swift in Sources */,
 				D683025A2B3B4396000D5407 /* SimilarCard.swift in Sources */,
+				D68915D22B4B309600BABEE6 /* CustomImageActor.swift in Sources */,
 				D6975C8E2B3AA61F00EC1348 /* Genre.swift in Sources */,
+				D68915CE2B4B1FC500BABEE6 /* Actor.swift in Sources */,
 				D6975C972B3AB6F200EC1348 /* DetailViewModel.swift in Sources */,
 				D65FD7062AE825B00089522C /* ContentView.swift in Sources */,
 				D67A284D2B38B4F800635A44 /* Optional.swift in Sources */,
@@ -359,6 +378,7 @@
 				D67A28732B395E9500635A44 /* MovieService.swift in Sources */,
 				D67A28532B38D4E500635A44 /* HomeView.swift in Sources */,
 				D67A286D2B39560400635A44 /* Endpoint.swift in Sources */,
+				D68915D02B4B221800BABEE6 /* ActorCard.swift in Sources */,
 				D67A28582B38D83200635A44 /* Color.swift in Sources */,
 				D6975C952B3AB6B700EC1348 /* DetailView.swift in Sources */,
 				D67A284F2B38B5AB00635A44 /* String.swift in Sources */,

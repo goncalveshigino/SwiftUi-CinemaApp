@@ -22,4 +22,5 @@ struct ColorTheme {
     let secondaryText = Color("SecondoText")
     let searchColor = Color("SearchColor")
     let textColor = Color("TextColor")
+    let iconColor = Color("IconColor")
 }

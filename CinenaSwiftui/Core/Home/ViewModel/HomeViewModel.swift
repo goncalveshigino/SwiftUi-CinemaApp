@@ -7,10 +7,17 @@
 
 import Foundation
 import Combine
+import UserNotifications
+
+struct UserDefaultStorage {
+    static let userDefaults = UserDefaults.standard
+}
+
 
 @MainActor
 final class HomeViewModel: ObservableObject {
     
+
     @Published private(set) var filteredMovies: [Movie] = []
     @Published var topRatedMovies: [Movie] = []
     @Published var trendingMovies: [Movie] = []
@@ -40,11 +47,13 @@ final class HomeViewModel: ObservableObject {
     private func addSubscribers() {
         $searchText
             .debounce(for: 0.3, scheduler: DispatchQueue.main)
-            .sink { [weak self] searchText in
-                self?.filteredMovies(searchText: searchText)
+            .sink { [weak self] (searchText) in
+             var searchResult =  self?.filteredMovies(searchText: searchText)
             }
             .store(in: &cancellables)
     }
+    
+ 
     
  
     private func filteredMovies(searchText: String) -> [Movie] {
@@ -54,7 +63,7 @@ final class HomeViewModel: ObservableObject {
             return []
         }
         
-        let movieInScope = topRatedMovies
+        let movieInScope = moviesForSelectedGenre
         let search = searchText.lowercased()
         
         filteredMovies = movieInScope.filter({ movie in

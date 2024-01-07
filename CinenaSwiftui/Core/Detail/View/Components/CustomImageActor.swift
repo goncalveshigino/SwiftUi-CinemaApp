@@ -1,24 +1,26 @@
 //
-//  CustomImageView.swift
+//  CustomImageActor.swift
 //  CinenaSwiftui
 //
-//  Created by Goncalves Higino on 25/12/23.
+//  Created by Goncalves Higino on 07/01/24.
 //
 
 import SwiftUI
 
-struct CustomImageView: View {
+
+
+struct CustomImageActor: View {
     
     let itemWidth: CGFloat
     let itemHeight: CGFloat
-    let movie: Movie
+    let cast: Cast
     var imageType: MovieImageType = .poster
     var imageString: String = ""
     
     @StateObject var vm = HomeViewModel()
     
     var body: some View {
-        AsyncImage(url: URL(string: vm.isSearching ? imageString : movie.getImage(for: imageType))) { image in
+        AsyncImage(url: URL(string: vm.isSearching ? imageString : cast.getImageActor(for: imageType))) { image in
             image
                 .resizable()
                 .scaledToFill()
@@ -34,6 +36,7 @@ struct CustomImageView: View {
     }
 }
 
-#Preview {
-    CustomImageView(itemWidth: 150, itemHeight: 170, movie: DeveloperPreview.instance.movie)
-}
+//#Preview {
+//  
+//}
+
