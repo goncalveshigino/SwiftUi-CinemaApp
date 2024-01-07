@@ -46,4 +46,23 @@ class DeveloperPreview {
         updatedAt: "2023-01-02T10:30:00Z",
         url: "https://example.com/review/12345"
     )
+    
+    let actor = Cast(
+        adult: false,
+        gender: 2,
+        id: 123,
+        knownForDepartment: "Acting",
+        name: "John Doe",
+        originalName: "John Doe",
+        popularity: 7.8,
+        profilePath: "/3bhkrj58Vtu7enYsRolD1fZdja1.jpg",
+        castID: 456,
+        character: "Hero",
+        creditID: "abc123",
+        order: 1
+    )
 }
+
+
+
+

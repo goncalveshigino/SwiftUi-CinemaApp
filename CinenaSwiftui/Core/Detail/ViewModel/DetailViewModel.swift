@@ -15,6 +15,7 @@ final class DetailViewModel: ObservableObject {
     @Published var selectedSection: DetailViewSection = .about
     @Published var reviews: [Review] = []
     @Published var similarMovies: [Movie] = []
+    @Published var actorsMovies: [Cast] = []
     @Published var errorMsg = ""
     
     private let movieService = MovieService()
@@ -43,5 +44,15 @@ final class DetailViewModel: ObservableObject {
         }
     }
     
-    
+    func fetchActors() async {
+        do {
+            let response: ActorResponse =  try await  movieService.fetchData(api: ApiConstructor(endpoint: .actorsByMovie(movie.id)))
+            actorsMovies = response.cast
+        } catch  {
+            print("Error: \(error.localizedDescription)")
+            errorMsg = "Error: \(error.localizedDescription)"
+        }
+    }
 }
+
+

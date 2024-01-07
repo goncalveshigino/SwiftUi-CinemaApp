@@ -40,16 +40,13 @@ struct DetailView: View {
             
                 ScrollView {
                   
-                    VStack {
+                    VStack(alignment: .leading) {
                         HStack {
                             Image(systemName: "calendar")
                             Text(viewModel.movie.releaseDate)
                             Text(" | ")
                             Image(systemName: "calendar")
                             Text("\(viewModel.movie.voteCount ?? 0)")
-                            Text(" | ")
-                            Image(systemName: "calendar")
-                            Text("Action")
                         }
                         .foregroundStyle(Color.theme.secondaryText)
                         .frame(maxWidth: .infinity)
@@ -76,17 +73,31 @@ struct DetailView: View {
                                     readMoreAndLess
                                 }
                             }
-                            .padding()
+                         
                             
                         case .review:
-                            ScrollView(showsIndicators: false) {
-                                ForEach(viewModel.reviews) { review in
-                                    ReviewCard(review: review)
-                                        .foregroundStyle(Color.theme.textColor)
-                                
-                                }
+                            ForEach(viewModel.reviews) { review in
+                                ReviewCard(review: review)
+                                    .foregroundStyle(Color.theme.textColor)
+                            
                             }
                         }
+                        
+                        VStack(alignment: .leading) {
+                            Text("Participantes")
+                                .font(.system(size: 16, weight: .bold))
+                            
+                            ScrollView(.horizontal, showsIndicators: false){
+                                HStack {
+                                    ForEach(viewModel.actorsMovies) { actor in
+                                       ActorCard(cast: actor)
+                                    }
+                                }
+                            }
+                            
+                            
+                        }
+                            
                         
                         VStack(alignment: .leading) {
                             Text("Recomendacoes")
@@ -101,9 +112,9 @@ struct DetailView: View {
                               
                             }
                         }
-                        .padding()
                         .padding(.bottom)
                 }
+                .padding()
                     
                     Spacer()
                 }
@@ -112,6 +123,7 @@ struct DetailView: View {
                 .task {
                     await viewModel.fetchReviews()
                     await viewModel.fetchSimilar()
+                    await viewModel.fetchActors()
                 }
             }
         }
@@ -144,21 +156,29 @@ private extension DetailView {
     
     var header: some View {
         ZStack(alignment: .leading) {
-            ZStack(alignment: .top) {
+            ZStack {
                 
                 CustomImageView(itemWidth: screenWith, itemHeight: posterImageHeight, movie: viewModel.movie)
                    
                     
-                Image(systemName: "chevron.left")
-                    .resizable()
-                    .scaledToFit()
-                    .foregroundStyle(Color.blue)
-                    .frame(width: 10)
-                    .onTapGesture {
-                        dismiss()
-                    }
-                    .padding(.top, 60)
-                    .padding(.trailing, 340)
+          
+                VStack {
+                    Image(systemName: "chevron.left")
+                        .resizable()
+                        .scaledToFit()
+                        .foregroundStyle(Color.blue)
+                        .frame(width: 10)
+                        .onTapGesture {
+                            dismiss()
+                        }
+                        .padding(10)
+                        .background(.ultraThinMaterial)
+                        .cornerRadius(10)
+                }
+                .padding(.trailing, 320)
+                .padding(.bottom, 170)
+                        
+                
                 
             }
             
