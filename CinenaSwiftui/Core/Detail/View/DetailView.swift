@@ -28,7 +28,12 @@ struct DetailView: View {
     @Namespace var namespace
     @State var showFullDescription: Bool = false
     
+    let movie: Movie
+    var type: MovieCardType = .search
+    var imageType: MovieImageType = .poster
+    
     init(movie: Movie) {
+        self.movie = movie
         _viewModel = StateObject(wrappedValue: DetailViewModel(movie: movie))
     }
     
@@ -45,8 +50,9 @@ struct DetailView: View {
                             Image(systemName: "calendar")
                             Text(viewModel.movie.releaseDate)
                             Text(" | ")
-                            Image(systemName: "calendar")
-                            Text("\(viewModel.movie.voteCount ?? 0)")
+                            Image(systemName: "star.leadinghalf.filled")
+                                .foregroundStyle(.yellow)
+                            Text("\(viewModel.movie.voteAverage?.formattedWithAbbreviations() ?? "")")
                         }
                         .foregroundStyle(Color.theme.secondaryText)
                         .frame(maxWidth: .infinity)
@@ -79,12 +85,11 @@ struct DetailView: View {
                             ForEach(viewModel.reviews) { review in
                                 ReviewCard(review: review)
                                     .foregroundStyle(Color.theme.textColor)
-                            
                             }
                         }
                         
                         VStack(alignment: .leading) {
-                            Text("Participantes")
+                            Text("Elenco Principal")
                                 .font(.system(size: 16, weight: .bold))
                             
                             ScrollView(.horizontal, showsIndicators: false){
@@ -94,13 +99,12 @@ struct DetailView: View {
                                     }
                                 }
                             }
-                            
-                            
                         }
+                        .padding(.bottom)
                             
                         
                         VStack(alignment: .leading) {
-                            Text("Recomendacoes")
+                            Text("Semelhantes")
                                 .font(.system(size: 16, weight: .bold))
                             
                             ScrollView(.horizontal, showsIndicators: false) {
@@ -138,6 +142,7 @@ struct DetailView: View {
 }
 
 private extension DetailView {
+    
     var readMoreAndLess: some View {
         Button {
             withAnimation(.easeInOut) {
@@ -158,7 +163,9 @@ private extension DetailView {
         ZStack(alignment: .leading) {
             ZStack {
                 
-                CustomImageView(itemWidth: screenWith, itemHeight: posterImageHeight, movie: viewModel.movie)
+                //CustomImageView(itemWidth: screenWith, itemHeight: posterImageHeight, movie: viewModel.movie)
+                
+                DownloadImageView(url: viewModel.movie.getImage(for: imageType), key: "\(viewModel.movie.id)", itemWidth: screenWith, itemHeight: posterImageHeight)
                    
                     
           
@@ -166,7 +173,6 @@ private extension DetailView {
                     Image(systemName: "chevron.left")
                         .resizable()
                         .scaledToFit()
-                        .foregroundStyle(Color.blue)
                         .frame(width: 10)
                         .onTapGesture {
                             dismiss()
@@ -183,7 +189,7 @@ private extension DetailView {
             }
             
             HStack {
-                CustomImageView(itemWidth: backdropImageSize, itemHeight: backdropImageSize, movie: viewModel.movie, imageType: .backdrop)
+                DownloadImageView(url: viewModel.movie.getImage(for: .backdrop), key: "\(viewModel.movie.id)", itemWidth: backdropImageSize, itemHeight: backdropImageSize)
                     .shadow(
                         color: Color.theme.accent.opacity(0.5),
                         radius: 10, x: 0, y: 1

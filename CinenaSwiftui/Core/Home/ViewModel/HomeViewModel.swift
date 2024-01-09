@@ -37,7 +37,7 @@ final class HomeViewModel: ObservableObject {
     private let movieService = MovieService()
     
     var isSearching: Bool {
-        !searchText.isEmpty
+        searchText.isNotEmpty
     }
     
     init() {
@@ -46,7 +46,7 @@ final class HomeViewModel: ObservableObject {
     
     private func addSubscribers() {
         $searchText
-            .debounce(for: 0.3, scheduler: DispatchQueue.main)
+            .debounce(for: 0.2, scheduler: DispatchQueue.main)
             .sink { [weak self] (searchText) in
              var searchResult =  self?.filteredMovies(searchText: searchText)
             }
@@ -67,7 +67,7 @@ final class HomeViewModel: ObservableObject {
         let search = searchText.lowercased()
         
         filteredMovies = movieInScope.filter({ movie in
-            return movie.originalTitle.lowercased().contains(search)
+            return movie.title.lowercased().contains(search)
         })
         return movieInScope
     }

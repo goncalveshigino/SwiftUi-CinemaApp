@@ -55,6 +55,7 @@ struct Movie: Codable, Identifiable {
 
 
 extension Movie {
+    
     var imageUrlString: String {
         Constants.imageBaseUrl + posterPath.stringValue
     }

@@ -31,7 +31,7 @@ struct ReviewCard: View {
                 .frame(width: 45, height: 45)
                 .clipShape(Circle())
                 
-                Text(review.authorImage)
+                Text(review.authorName)
                     .font(.system(size: 16, weight: .medium))
             }
             
@@ -44,5 +44,5 @@ struct ReviewCard: View {
 }
 
 #Preview {
-    ReviewCard(review: DeveloperPreview.instance.mockReview)
+    ReviewCard(review: DeveloperPreview.instance.mockReview[0])
 }
