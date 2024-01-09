@@ -1,9 +1,3 @@
-//
-//  MovieCard.swift
-//  CinenaSwiftui
-//
-//  Created by Goncalves Higino on 25/12/23.
-//
 
 import SwiftUI
 
@@ -11,9 +5,11 @@ struct MovieCard: View {
     
     let movie: Movie
     var type: MovieCardType = .poster
+    var imageType: MovieImageType = .poster
     
     var body: some View {
-        CustomImageView(itemWidth: itemWidth, itemHeight: itemHeight, movie: movie)
+      //  CustomImageView(itemWidth: itemWidth, itemHeight: itemHeight, movie: movie)
+        DownloadImageView(url: movie.getImage(for: imageType), key: "\(movie.id)", itemWidth: itemWidth, itemHeight: itemHeight)
     }
 }
 

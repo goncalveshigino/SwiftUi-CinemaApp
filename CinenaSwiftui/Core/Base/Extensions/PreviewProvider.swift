@@ -37,15 +37,35 @@ class DeveloperPreview {
     
     let genre = Genre(id: 28, name: "Action")
     
-    let mockReview = Review(
-        author: "John Doe", 
-        authorDetails: nil,
-        content: "This is a great movie!",
-        createdAt: "2023-01-01T12:00:00Z",
-        id: "12345",
-        updatedAt: "2023-01-02T10:30:00Z",
-        url: "https://example.com/review/12345"
-    )
+    let mockReview: [Review] = [
+        Review(
+            author: "John Doe",
+            authorDetails: nil,
+            content: "This is a great movie!",
+            createdAt: "2023-01-01T12:00:00Z",
+            id: "12345",
+            updatedAt: "2023-01-02T10:30:00Z",
+            url: "https://example.com/review/12345"
+        ),
+        Review(
+            author: "Luiz Doe",
+            authorDetails: nil,
+            content: "This is a great movie!",
+            createdAt: "2023-01-01T12:00:00Z",
+            id: "12345",
+            updatedAt: "2023-01-02T10:30:00Z",
+            url: "https://example.com/review/12345"
+        ),
+        Review(
+            author: "Katiavala Doe",
+            authorDetails: nil,
+            content: "This is a great movie!",
+            createdAt: "2023-01-01T12:00:00Z",
+            id: "12345",
+            updatedAt: "2023-01-02T10:30:00Z",
+            url: "https://example.com/review/12345"
+        )
+    ]
     
     let actor = Cast(
         adult: false,
@@ -57,9 +77,7 @@ class DeveloperPreview {
         popularity: 7.8,
         profilePath: "/3bhkrj58Vtu7enYsRolD1fZdja1.jpg",
         castID: 456,
-        character: "Hero",
-        creditID: "abc123",
-        order: 1
+        character: "Hero"
     )
 }
 

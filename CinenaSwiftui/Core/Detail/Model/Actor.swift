@@ -20,8 +20,7 @@ struct Cast:Identifiable, Codable {
     let popularity: Double
     let profilePath: String
     let castID: Int
-    let character, creditID: String
-    let order: Int
+    let character: String
 
     enum CodingKeys: String, CodingKey {
         case adult, gender, id
@@ -32,8 +31,6 @@ struct Cast:Identifiable, Codable {
         case profilePath = "profile_path"
         case castID = "cast_id"
         case character
-        case creditID = "credit_id"
-        case order
     }
 }
 

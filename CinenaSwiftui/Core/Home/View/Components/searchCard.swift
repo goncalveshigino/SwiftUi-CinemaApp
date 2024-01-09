@@ -11,6 +11,7 @@ struct SearchCard: View {
     
     let movie: Movie
     var type: MovieCardType = .search
+    var imageType: MovieImageType = .poster
     
     var body: some View {
         HStack(spacing: 20) {
@@ -20,7 +21,7 @@ struct SearchCard: View {
                     radius: 10, x: 0, y: 1
                 )
             
-            VStack {
+            VStack(alignment: .leading) {
                 Text(movie.title)
                     .bold()
                     .foregroundStyle(Color.theme.textColor)
@@ -52,7 +53,6 @@ extension SearchCard {
 #Preview {
     SearchCard(movie: DeveloperPreview.instance.movie)
 }
-
 
 
 
